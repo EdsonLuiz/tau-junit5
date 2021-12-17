@@ -2,6 +2,7 @@ package junit5tests;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
@@ -17,7 +18,17 @@ public class ParameterizedTests_07 {
     System.out.println("param1 = " + param1);
   }
 
+  @ParameterizedTest
+  @MethodSource(value = "sourceStringAsStrem")
+  void methodSourceStringStream(String param1) {
+    System.out.println("param1 - "+ param1);
+  }
+
   List<String> sourceString() {
     return Arrays.asList("tomate", "cenoura", "beterraba");
+  }
+
+  Stream<String> sourceStringAsStrem() {
+    return Stream.of("banana", "maçã", "pera");
   }
 }
